@@ -72,6 +72,46 @@ document.addEventListener('DOMContentLoaded', function () {
     var successMessage = document.getElementById('success-message');
     var errorMessage = document.getElementById('error-message');
     var submitButton = form ? form.querySelector('button[type="submit"]') : null;
+    var captchaRow = document.getElementById('captcha-row');
+    var hcaptchaContainer = document.getElementById('hcaptcha-container');
+    var hcaptchaWidgetId = null;
+    var hcaptchaSiteKey = document.documentElement ? document.documentElement.getAttribute('data-hcaptcha-sitekey') : '';
+
+    function isHcaptchaConfigured() {
+        return Boolean(hcaptchaSiteKey && hcaptchaSiteKey.trim());
+    }
+
+    function ensureHcaptchaToken() {
+        return new Promise(function (resolve, reject) {
+            if (!isHcaptchaConfigured()) {
+                resolve(null);
+                return;
+            }
+
+            if (typeof hcaptcha === 'undefined' || !hcaptchaContainer) {
+                reject(new Error('hCaptcha not available'));
+                return;
+            }
+
+            if (hcaptchaWidgetId === null) {
+                hcaptchaWidgetId = hcaptcha.render(hcaptchaContainer, {
+                    sitekey: hcaptchaSiteKey,
+                    size: 'invisible',
+                    callback: function (token) { resolve(token); },
+                    'error-callback': function () { reject(new Error('hCaptcha error')); },
+                    'expired-callback': function () { reject(new Error('hCaptcha expired')); }
+                });
+            } else {
+                try { hcaptcha.reset(hcaptchaWidgetId); } catch (e) { /* ignore */ }
+            }
+
+            try {
+                hcaptcha.execute(hcaptchaWidgetId);
+            } catch (e) {
+                reject(e);
+            }
+        });
+    }
 
     function setMessage(el, msg) {
         if (!el) return;
@@ -114,6 +154,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (form && emailInput && successMessage) {
+        if (captchaRow && isHcaptchaConfigured()) {
+            captchaRow.hidden = false;
+        }
         if (ctaLinks && ctaLinks.length) {
             ctaLinks.forEach(function (link) {
                 link.addEventListener('click', function () {
@@ -148,11 +191,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 submitButton.textContent = 'Sending...';
             }
 
-            fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: { 'Accept': 'application/json' }
-            })
+            ensureHcaptchaToken()
+                .catch(function () {
+                    throw new Error('Captcha failed. Please try again.');
+                })
+                .then(function () {
+                    return fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: { 'Accept': 'application/json' }
+                    });
+                })
                 .then(function (res) {
                     return res.json().catch(function () { return null; }).then(function (json) {
                         return { ok: res.ok, status: res.status, json: json };
@@ -190,8 +239,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         hj('event', 'beta_signup_error');
                     }
                 })
-                .catch(function () {
-                    setMessage(errorMessage, 'Network error. Please try again.');
+                .catch(function (err) {
+                    var msg = 'Network error. Please try again.';
+                    if (err && err.message && /Captcha failed/i.test(err.message)) {
+                        msg = err.message;
+                    }
+                    setMessage(errorMessage, msg);
                     if (typeof gtag === 'function') {
                         gtag('event', 'beta_signup_error', { event_category: 'engagement', event_label: 'network' });
                     }

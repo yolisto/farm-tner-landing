@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-hcaptcha-sitekey="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +25,9 @@
     <meta name="twitter:image" content="https://farm-tner-landing.vercel.app/og-image.png">
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- Optional: hCaptcha (recommended if Formspree flags submissions as spam) -->
+    <script src="https://js.hcaptcha.com/1/api.js?render=explicit" async defer></script>
 
     <!-- GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-14LWT0VZ7W"></script>
@@ -245,6 +248,9 @@
             <p class="cta-desc">Farm-tner 베타 서비스를 먼저 경험해보세요.</p>
             <form class="cta-form" id="beta-form" action="https://formspree.io/f/xvzwryza" method="POST">
                 <input type="email" id="email-input" name="email" class="cta-input" placeholder="Email" autocomplete="email" inputmode="email" required>
+                <div class="captcha-row" id="captcha-row" hidden>
+                    <div id="hcaptcha-container"></div>
+                </div>
                 <input type="hidden" id="lead-subject" name="_subject" value="Farm-tner beta signup">
                 <input type="hidden" id="lead-cta-label" name="cta_label" value="cta_form">
                 <input type="hidden" id="lead-page-url" name="page_url" value="">

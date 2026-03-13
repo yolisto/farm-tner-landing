@@ -483,6 +483,7 @@ section {
     justify-content: center;
     max-width: 500px;
     margin: 0 auto 24px;
+    flex-wrap: wrap;
 }
 
 .cta-input {
@@ -492,6 +493,13 @@ section {
     border-radius: 12px;
     font-size: 1rem;
     transition: border-color 0.2s;
+    min-width: 220px;
+}
+
+.captcha-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .cta-input:focus {
