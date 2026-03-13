@@ -254,7 +254,12 @@
                 <input type="hidden" id="lead-utm-campaign" name="utm_campaign" value="">
                 <input type="hidden" id="lead-utm-content" name="utm_content" value="">
                 <input type="hidden" id="lead-utm-term" name="utm_term" value="">
-                <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <div class="hp-field" aria-hidden="true">
+                    <label>
+                        Leave this field empty
+                        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+                    </label>
+                </div>
                 <button type="submit" class="btn btn-primary btn-large">베타 서비스 신청</button>
             </form>
             <div class="form-message error-message" id="error-message" role="alert"></div>
