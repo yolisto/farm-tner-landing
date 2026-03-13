@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farm-tner | 창농 준비 플랫폼</title>
+    <meta name="description" content="정책, 금융, 교육, 농지 정보를 한 곳에서 확인하고 전문가 상담까지 연결받는 창농 준비 플랫폼. 예비 청년농을 위한 Farm-tner.">
+    <meta name="keywords" content="창농, 청년농, 농업창업, 스마트팜, 농업정책, 농지정보">
+    <meta name="author" content="Farm-tner">
+    <link rel="canonical" href="https://farm-tner-landing.vercel.app/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Farm-tner | 창농 준비 플랫폼">
+    <meta property="og:description" content="정책, 금융, 교육, 농지 정보를 한 곳에서 확인하고 전문가 상담까지 연결받는 창농 준비 플랫폼.">
+    <meta property="og:image" content="https://farm-tner-landing.vercel.app/og-image.png">
+    <meta property="og:url" content="https://farm-tner-landing.vercel.app/">
+    <meta property="og:site_name" content="Farm-tner">
+    <meta property="og:locale" content="ko_KR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Farm-tner | 창농 준비 플랫폼">
+    <meta name="twitter:description" content="정책, 금융, 교육, 농지 정보를 한 곳에서 확인하고 전문가 상담까지 연결받는 창농 준비 플랫폼.">
+    <meta name="twitter:image" content="https://farm-tner-landing.vercel.app/og-image.png">
+
     <link rel="stylesheet" href="style.css">
 
     <!-- GA4 -->
@@ -32,8 +52,65 @@
                 필요할 때 전문가 상담까지 연결해주는 플랫폼입니다.
             </p>
             <div class="hero-cta">
-                <a href="#cta" class="btn btn-primary">창농 준비 시작하기</a>
-                <a href="#cta" class="btn btn-secondary">베타 서비스 신청</a>
+                <a href="#cta" class="btn btn-primary" id="cta-hero-primary" data-ga-label="창농 준비 시작하기">창농 준비 시작하기</a>
+                <a href="#cta" class="btn btn-secondary" id="cta-hero-secondary" data-ga-label="베타 서비스 신청">베타 서비스 신청</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Actions Section -->
+    <section class="quick-actions" id="quick-actions">
+        <div class="container">
+            <div class="quick-actions-grid">
+                <a href="#recommended" class="quick-card" data-ga-label="정보 보기" data-qa-id="info">
+                    <div class="quick-icon">📋</div>
+                    <div class="quick-label">정보 보기</div>
+                </a>
+                <a href="#solution" class="quick-card" data-ga-label="준비 확인" data-qa-id="check">
+                    <div class="quick-icon">✅</div>
+                    <div class="quick-label">준비 확인</div>
+                </a>
+                <a href="#cta" class="quick-card" data-ga-label="상담 예약" data-qa-id="consult">
+                    <div class="quick-icon">🤝</div>
+                    <div class="quick-label">상담 예약</div>
+                </a>
+                <a href="#features" class="quick-card" data-ga-label="더보기" data-qa-id="more">
+                    <div class="quick-icon">🌾</div>
+                    <div class="quick-label">더보기</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended Info Section -->
+    <section class="recommended" id="recommended">
+        <div class="container">
+            <h2 class="section-title section-title-left">추천 정보</h2>
+            <div class="recommended-list">
+                <a href="#cta" class="recommended-card" data-ga-label="청년농 영농정착 지원">
+                    <div class="recommended-icon">📄</div>
+                    <div class="recommended-content">
+                        <div class="recommended-title">청년농 영농정착 지원</div>
+                        <div class="recommended-meta">50,000,000원 지원</div>
+                        <div class="recommended-tag recommended-deadline">마감: 2024.12.31</div>
+                    </div>
+                </a>
+                <a href="#cta" class="recommended-card" data-ga-label="스마트팜 기초 교육">
+                    <div class="recommended-icon">📚</div>
+                    <div class="recommended-content">
+                        <div class="recommended-title">스마트팜 기초 교육</div>
+                        <div class="recommended-meta">온라인 교육 프로그램</div>
+                        <div class="recommended-tag">시작: 11월</div>
+                    </div>
+                </a>
+                <a href="#cta" class="recommended-card" data-ga-label="청년농 우대 대출">
+                    <div class="recommended-icon">💰</div>
+                    <div class="recommended-content">
+                        <div class="recommended-title">청년농 우대 대출</div>
+                        <div class="recommended-meta">농협 연 2% 저금리</div>
+                        <div class="recommended-tag recommended-available">신청 가능</div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
