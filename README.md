@@ -26,6 +26,21 @@
    Output Directory 설정 없이 기본값으로 진행합니다.
 4. Deploy 후부터는 GitHub에 push/commit할 때마다 자동으로 재배포됩니다.
 
+## 분석 도구 설정 (GA4, Hotjar)
+
+### Google Analytics 4 (GA4)
+1. [Google Analytics](https://analytics.google.com/)에서 속성 생성
+2. **관리 → 데이터 스트림**에서 웹 스트림 추가 후 **Measurement ID** 확인 (형식: `G-XXXXXXXXXX`)
+3. `index.html` 내 `G-XXXXXXXXXX`를 위 ID로 교체
+
+### Hotjar
+1. [Hotjar](https://www.hotjar.com/)에서 사이트 추가
+2. **Tracking code** 메뉴에서 **Site ID** 확인 (숫자 7자리)
+3. `index.html` 내 `1234567`을 위 Site ID로 교체
+
+### 자동 트래킹
+- 베타 신청 완료 시 `beta_signup` 이벤트가 GA4·Hotjar에 자동 전송됩니다.
+
 ## 참고
 
 - `vercel.json`은 정적 사이트로 동작할 때 URL 정리(확장자 숨김 등) 용도로 포함되어 있습니다.

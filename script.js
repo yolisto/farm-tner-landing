@@ -15,6 +15,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
             console.log('Beta signup email:', email);
 
+            if (typeof gtag === 'function') {
+                gtag('event', 'beta_signup', { event_category: 'engagement', event_label: 'cta_form' });
+            }
+            if (typeof hj === 'function') {
+                hj('event', 'beta_signup');
+            }
+
             successMessage.classList.add('visible');
             form.style.display = 'none';
 
