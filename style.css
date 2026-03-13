@@ -511,9 +511,36 @@ section {
     display: none;
 }
 
+.form-message {
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 auto 16px;
+    max-width: 520px;
+    display: none;
+}
+
+.form-message.visible {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.error-message {
+    color: #C53030;
+}
+
 .success-message.visible {
     display: block;
     animation: fadeIn 0.3s ease;
+}
+
+.hp-field {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 
 @keyframes fadeIn {

@@ -243,10 +243,21 @@
         <div class="container">
             <h2 class="cta-title">창농 준비를 더 쉽게 시작하세요</h2>
             <p class="cta-desc">Farm-tner 베타 서비스를 먼저 경험해보세요.</p>
-            <form class="cta-form" id="beta-form">
-                <input type="email" id="email-input" class="cta-input" placeholder="Email" required>
+            <form class="cta-form" id="beta-form" action="https://formspree.io/f/xvzwryza" method="POST">
+                <input type="email" id="email-input" name="email" class="cta-input" placeholder="Email" autocomplete="email" inputmode="email" required>
+                <input type="hidden" id="lead-subject" name="_subject" value="Farm-tner beta signup">
+                <input type="hidden" id="lead-cta-label" name="cta_label" value="cta_form">
+                <input type="hidden" id="lead-page-url" name="page_url" value="">
+                <input type="hidden" id="lead-referrer" name="referrer" value="">
+                <input type="hidden" id="lead-utm-source" name="utm_source" value="">
+                <input type="hidden" id="lead-utm-medium" name="utm_medium" value="">
+                <input type="hidden" id="lead-utm-campaign" name="utm_campaign" value="">
+                <input type="hidden" id="lead-utm-content" name="utm_content" value="">
+                <input type="hidden" id="lead-utm-term" name="utm_term" value="">
+                <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
                 <button type="submit" class="btn btn-primary btn-large">베타 서비스 신청</button>
             </form>
+            <div class="form-message error-message" id="error-message" role="alert"></div>
             <div class="success-message" id="success-message">
                 신청이 완료되었습니다!
             </div>
